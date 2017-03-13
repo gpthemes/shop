@@ -191,21 +191,21 @@ function gp_extreme_enqueue_scripts() {
 	
 	// Scripts
 	
-	wp_enqueue_script( 'gp-extreme-', get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-extreme-jquery', get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-extreme-', get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-extreme-bootstrap', get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-extreme-', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-extreme-isotope', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-extreme-', get_stylesheet_directory_uri() . '/assets/js/jquery.slicknav.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-extreme-slicknav', get_stylesheet_directory_uri() . '/assets/js/jquery.slicknav.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-extreme-', get_stylesheet_directory_uri() . '/assets/js/jquery.visible.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-extreme-visible', get_stylesheet_directory_uri() . '/assets/js/jquery.visible.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-extreme-', get_stylesheet_directory_uri() . '/assets/js/modernizr.custom.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-extreme-modernizr', get_stylesheet_directory_uri() . '/assets/js/modernizr.custom.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-extreme-', get_stylesheet_directory_uri() . '/assets/js/slimbox2.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-extreme-slimbox2', get_stylesheet_directory_uri() . '/assets/js/slimbox2.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-extreme-', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-extreme-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ) );
 	
 }
 add_action( 'wp_enqueue_scripts', 'gp_extreme_enqueue_scripts' );
