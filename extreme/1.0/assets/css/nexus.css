@@ -87,7 +87,6 @@ body {
 /* Logo */
 .logo {
   width: 100%;
-  position: absolute;
 }
 .logo a {
   left: 0px;
