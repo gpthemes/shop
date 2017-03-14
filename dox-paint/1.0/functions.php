@@ -16,38 +16,44 @@ if(!function_exists('pree')){
 	}	 
 } 
 
-if ( ! function_exists( 'gp_dox_paint_setup' ) ) :
 /**
-* Sets up theme defaults and registers support for various WordPress features
-*
-*  It is important to set up these functions before the init hook so that none of these
-*  features are lost.
-*
-*  @since MyFirstTheme 1.0
-*/
+ * Sets up theme defaults and registers support for various WordPress features
+ *
+ *  It is important to set up these functions before the init hook so that none of these
+ *  features are lost.
+ *
+ *  @since MyFirstTheme 1.0
+ *
+ *	1.0 - Theme defaults and registers support
+ */
+
+if ( ! function_exists( 'gp_dox_paint_setup' ) ) :
+
 	function gp_dox_paint_setup() {
-	/**
-     * Add default posts and comments RSS feed links to <head>.
-     */
-	 	add_theme_support( 'automatic-feed-links' );
-	
-	/**
-     * Enable support for post thumbnails and featured images.
-     */
+		
+		/**
+		 *	1.1 - Add default posts and comments RSS feed links to <head>.
+		 */
+		add_theme_support( 'automatic-feed-links' );
+		
+		/**
+		 *	1.2 - Enable support for post thumbnails and featured images.
+		 */
 		add_theme_support( 'post-thumbnails' );
-	
-	/**
-     * Add support for two custom navigation menus.
-     */
+		
+		/**
+		 *	1.3 - Add support for two custom navigation menus.
+		 */
 		register_nav_menus( array(
 			'primary' 		=> 	'Primary Menu',
 			'secondary' 	=> 	'Secondary Menu',
 			'social-links'	=>	'Social Links'
 			
 		) );
-	/**
-     * Register sidebars.
-     */
+		
+		/**
+		 *	1.4 - Register sidebars.
+		 */
 		function gp_dox_paint_sidebars() {
 			register_sidebar( array(
 				'name'          => __( 'Primary Sidebar', 'theme_name' ),
@@ -121,14 +127,13 @@ if ( ! function_exists( 'gp_dox_paint_setup' ) ) :
 		}
 		add_action( 'widgets_init', 'gp_dox_paint_sidebars' );
 			
-	
-	}
+	}// End gp_dox_paint_setup Funtion
 endif;	
 add_action( 'after_setup_theme', 'gp_dox_paint_setup' );
 
-	/**
-	* Add support for custom logo.
-	*/
+/**
+ *	2.0 - Add support for custom logo.
+ */
 	function gp_dox_paint_custom_logo(){
 		$defaults = array(
 			'height' => '100',
@@ -144,8 +149,8 @@ add_action( 'after_setup_theme', 'gp_dox_paint_setup' );
 add_action( 'after_setup_theme', 'gp_dox_paint_custom_logo' );
 
 /**
-*	Function to check Sidebars have content?
-*/
+ *	3.0 - Function to check Sidebars have content?
+ */
 function gp_dynamic_sidebar ($sidebar_id){
 	ob_start();
 	dynamic_sidebar($sidebar_id);
@@ -153,67 +158,64 @@ function gp_dynamic_sidebar ($sidebar_id){
 	ob_end_clean();
 	return $sidebar;
 }
+/**
+ *	4.0 - Customizer Include
+ */
+	include_once('/inc/gp-customizer.php');
 
-
-
-/*Customizer Code HERE*/
-add_action('customize_register', 'gp_dox_paint_footer_customizer');
-	
-function gp_dox_paint_footer_customizer($wp_customize){
-	 //adding section in wordpress customizer   
-	$wp_customize->add_section('footer_settings_section', array(
-  		'title'          => 'Footer'
- 	));
-	//adding setting for footer text area
-	$wp_customize->add_setting('copy_right_text', array(
- 		'default'        => 'Default Text For Footer Section',
- 	));
-	$wp_customize->add_control('copy_right_text', array(
- 	'label'   => 'Copy Right Text',
-  	'section' => 'footer_settings_section',
- 	'type'    => 'textarea',
-	));
-}
-
+/**
+ *	5.0 - Scripts Include
+ */
 function gp_dox_paint_enqueue_scripts() {
-	// Styles
-    wp_enqueue_style( 'gp-dox-paint-bootstrap', get_stylesheet_directory_uri() . '/assets/css/bootstrap.css', array(), date('Ymhi'));
 	
-	wp_enqueue_style( 'gp-dox-paint-animate', get_stylesheet_directory_uri() . '/assets/css/animate.css', array(), date('Ymhi'));
+	/*
+	*	Path variables to assets	
+	*/
+	$_gp_path = get_stylesheet_directory_uri() . '/assets';
 	
-	wp_enqueue_style( 'gp-dox-paint-nexus', get_stylesheet_directory_uri() . '/assets/css/nexus.css', array(), date('Ymhi'));
+	/**
+	*	5.1 - Styles 
+	*/
 	
-	wp_enqueue_style( 'gp-dox-paint-font-awesome', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css', array(), date('Ymhi'));
+    wp_enqueue_style( 'gp-dox-paint-bootstrap', $_gp_path.'/css/bootstrap.css', array(), date('Ymhi'));
 	
-	wp_enqueue_style( 'gp-dox-paint-responsive', get_stylesheet_directory_uri() . '/assets/css/responsive.css', array(), date('Ymhi'));
+	wp_enqueue_style( 'gp-dox-paint-animate', $_gp_path.'/css/animate.css', array(), date('Ymhi'));
 	
-	wp_enqueue_style( 'gp-dox-paint-custom', get_stylesheet_directory_uri() . '/assets/css/custom.css', array(), date('Ymhi'));
+	wp_enqueue_style( 'gp-dox-paint-nexus', $_gp_path.'/css/nexus.css', array(), date('Ymhi'));
 	
-	// Scripts
+	wp_enqueue_style( 'gp-dox-paint-font-awesome', $_gp_path.'/css/font-awesome.css', array(), date('Ymhi'));
 	
-	wp_enqueue_script( 'gp-dox-paint-jquery', get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array( 'jquery' ) );
+	wp_enqueue_style( 'gp-dox-paint-responsive', $_gp_path.'/css/responsive.css', array(), date('Ymhi'));
 	
-	wp_enqueue_script( 'gp-dox-paint-bootstrap', get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ) );
+	wp_enqueue_style( 'gp-dox-paint-custom', $_gp_path.'/css/custom.css', array(), date('Ymhi'));
 	
-	wp_enqueue_script( 'gp-dox-paint-isotope', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.js', array( 'jquery' ) );
+	/**
+	*	5.2 - Scripts
+	*/ 
 	
-	wp_enqueue_script( 'gp-dox-paint-slicknav', get_stylesheet_directory_uri() . '/assets/js/jquery.slicknav.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-dox-paint-jquery', $_gp_path.'/js/jquery.min.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-dox-paint-visible', get_stylesheet_directory_uri() . '/assets/js/jquery.visible.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-dox-paint-bootstrap', $_gp_path.'/js/bootstrap.min.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-dox-paint-modernizer', get_stylesheet_directory_uri() . '/assets/js/modernizr.custom.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-dox-paint-isotope', $_gp_path.'/js/jquery.isotope.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-dox-paint-slimbox', get_stylesheet_directory_uri() . '/assets/js/slimbox2.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-dox-paint-slicknav', $_gp_path.'/js/jquery.slicknav.js', array( 'jquery' ) );
 	
-	wp_enqueue_script( 'gp-dox-paint-scripts', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ) );
+	wp_enqueue_script( 'gp-dox-paint-visible', $_gp_path.'/js/jquery.visible.js', array( 'jquery' ) );
+	
+	wp_enqueue_script( 'gp-dox-paint-modernizer', $_gp_path.'/js/modernizr.custom.js', array( 'jquery' ) );
+	
+	wp_enqueue_script( 'gp-dox-paint-slimbox', $_gp_path.'/js/slimbox2.js', array( 'jquery' ) );
+	
+	wp_enqueue_script( 'gp-dox-paint-scripts', $_gp_path.'/js/scripts.js', array( 'jquery' ) );
 	
 }
 add_action( 'wp_enqueue_scripts', 'gp_dox_paint_enqueue_scripts' );
 
 /**
-*	Modify The Read More Link Text
-*
-*/
+ *	6.0 - Modify The Read More Link Text
+ *
+ */
 
 function modify_read_more_link() {
     return '<a class="more-link btn btn-primary" href="' . get_permalink() . '">Read More <i class="icon-chevron-right readmore-icon"></i></a>';
