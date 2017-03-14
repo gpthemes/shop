@@ -31,9 +31,9 @@ get_header();
 			
 			<div class="row margin-top-10">
 				<!-- Carousel Slideshow -->
-            <?php if ( is_active_sidebar( 'gp-extreme-slider' ) ) : ?>
+            <?php if ( is_active_sidebar( 'gp-dox-paint-slider' ) ) : ?>
 			
-            	<?php dynamic_sidebar( 'gp-extreme-slider' ); ?>
+            	<?php dynamic_sidebar( 'gp-dox-paint-slider' ); ?>
                 
 			<?php else : ?>
             <div id="carousel-example" class="carousel slide" data-ride="carousel" style="border:2px dashed #333; padding: 30px;border-radius:0;">
