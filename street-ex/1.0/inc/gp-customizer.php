@@ -1,5 +1,16 @@
 <?php
 
+
+
+
+/**
+ *	Slider Customizer
+ */
+
+?>
+
+
+<?php
 /**
  *	Footer Customizer
  */
@@ -21,5 +32,5 @@ function gp_footer_customizer($wp_customize){
 		'label'   => 'Copy Right Text',
 		'section' => 'footer_settings_section',
 		'type'    => 'textarea',
-	));
+	));	
 }

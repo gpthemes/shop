@@ -154,7 +154,7 @@ p.site-slogan {
 #footermenu ul li a {
   color: #eeeeee;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
+  font-size: 12px;
 }
 #footermenu ul li a:hover {
   color: #ffffff;
@@ -975,7 +975,7 @@ h1.logo-text a {
 /* Typo */
 /*-----------------------------------------------------------------------------------*/
 h1 {
-  font-size: 2em;
+  font-size: 40px;
 }
 h2 {
   font-weight: 300;
@@ -986,7 +986,7 @@ h2 {
   font-size: 32px;
 }
 h3 {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 300;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
@@ -994,15 +994,15 @@ h3 {
   color: #2d2d2d;
 }
 h4 {
-  font-size: 18px;
+  font-size: 24px;
   color: #9e9e9e;
   line-height: 32px;
 }
 h5 {
-  font-size: 1.1em;
+  font-size: 20px;
 }
 h6 {
-  font-size: 1em;
+  font-size: 16px;
   font-weight: bold;
 }
 a {
@@ -1023,7 +1023,9 @@ hr {
   width: 70%;
 }
 img {
-  max-width: 100% ;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	max-width: 100%;
 }
 .icon-list {
   padding-left: 30px;
@@ -1480,6 +1482,24 @@ i.fa.center {
   -moz-transition: -moz-transform 0.4s, opacity 0.1s;
   transition: transform 0.4s, opacity 0.1s;
 }
+iframe {
+    height: 400px;
+    width: 100%;
+  }embed,
+iframe,
+object,
+video {
+	margin-bottom: 1.75em;
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+p > embed,
+p > iframe,
+p > object,
+p > video {
+	margin-bottom: 0;
+}
 @media only screen and (min-width: 960px) and (max-width: 1024px) {
   .image-hover figcaption {
     display: none;
@@ -1487,24 +1507,32 @@ i.fa.center {
   .portfolio-group .image-hover {
     width: 157px;
   }
+ 
 }
 @media only screen and (min-width: 768px) and (max-width: 959px) {
-  .image-hover figcaption {
-    display: none;
-  }
-  .portfolio-group .image-hover {
-    width: 108px;
-  }
+	.image-hover figcaption {
+		display: none;
+	}
+	.portfolio-group .image-hover {
+		width: 108px;
+	}
+}
 }
 @media only screen and (max-width: 767px) {
-  .image-hover figcaption {
-    display: none;
-  }
-  .portfolio-group .image-hover {
-    width: 144px;
-  }
+	.image-hover figcaption {
+		display: none;
+	}
+	.portfolio-group .image-hover {
+		width: 144px;
+	}
+	img {
+		height: auto;
+		max-width: 100%;
+		vertical-align: middle;
+	}
+
 }
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 480px) {
 	h1{ 
 		font-size:20px;
 	}
@@ -1517,20 +1545,43 @@ i.fa.center {
 	h4{ 
 		font-size:14px;
 	}
-  .image-hover figcaption {
-    display: none;
-  }
-  .portfolio-group .image-hover {
-    width: 110px;
-  }
-  .logo {
-  	position: relative;
-  }
-  .logo a {
-  	display: block ;
-  	width: auto ;
-	text-align:center;
-  }
+	.image-hover figcaption {
+		: none;
+	}
+	.portfolio-group .image-hover {
+		width: 110px;
+	}
+	.logo {
+		position: relative;
+	}
+	
+	.logo a {
+		display: block ;
+		width: auto ;
+		text-align:center;
+	}
+	img {
+		height: auto;
+		max-width: 100%;
+		vertical-align: middle;
+	}
+	p > embed,
+	p > iframe,
+	p > object,
+	p > video {
+		height:260px;
+	}
+	#copyright p {
+		text-align:center;  
+	}
+	#footermenu {
+		border-top: 1px solid #ccc;
+		margin-top: 10px;
+		padding-top: 10px;
+	}
+	#footermenu ul {
+		text-align:center;
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 /* Testimonials */
@@ -2566,6 +2617,10 @@ ul.social-icons li a:hover {
   right: 0;
   top: 0;
 }
+.footer-wrap .blog-tag::after,
+.footer-wrap .widget.widget_tag_cloud .tagcloud > a::after {
+	background: #363539;
+}
 .blog-tag:hover,
 .widget.widget_tag_cloud .tagcloud > a:hover {
   background-color: #817f88;
@@ -2764,12 +2819,15 @@ td a:hover{
 	font-weight: bold;
 	color: #F58B1F;	
 }
-
+/**
+	Sidebar Widgets
+*/
 .sidebar .widget {
 	margin-bottom:16px;
 	padding-bottom: 16px;
 	border-bottom: 1px solid #ccc;	
 }
+
 .sidebar .widget:last-child{
 	border-bottom: 0;	
 }
@@ -2779,13 +2837,14 @@ td a:hover{
 .navigation.pagination .screen-reader-text{
 	display:none;	
 }
-.more-link{
-	background-color: #F58B1F;
-	border-color:#F58B1F;
-	border-radius: 0;
-  	margin-left: 4px;
-  	padding: 4px 8px;
-	transition-duration: 0.4s;
+.more-link {
+  background-color: #f58b1f;
+  border-color: #f58b1f;
+  border-radius: 0;
+  display: table;
+  margin-top: 8px;
+  padding: 2px 7px;
+  transition-duration: 0.4s;
 }
 .more-link:hover{
 	background-color: #fff;
@@ -2816,4 +2875,13 @@ td a:hover{
 	background-color: #F58B1F;
 	border-color: #dddddd;
 	color:#fff;	
+}
+ul {
+	padding:0;
+	margin: 0;
+	list-style: inside square;
+}
+ul ul{
+	padding-left: 20px;
+	list-style: inside circle;
 }

@@ -10,7 +10,7 @@
                 </div>
                 <!-- End Date -->
                 <!-- Title -->
-          <?php if(is_single()): ?>
+          <?php if(is_singular()): ?>
           
           		<h2><?php the_title(); ?></h2>
           
@@ -58,7 +58,7 @@
                 <!-- Post Thumbnail -->    
             <?php if( has_post_thumbnail() ): ?>
                 
-				<?php if(is_single()): ?>
+				<?php if(is_singular()): ?>
                 <div class="col-md-12">
                 <?php else: ?>
                 <div class="col-md-5 pull-left">
@@ -71,7 +71,7 @@
                 
                 <!-- Post text -->                
                 
-                <?php if(is_single()): ?>
+                <?php if(is_singular()): ?>
                 <div class="col-md-12 pull-left">
                 	<p><?php the_content(); ?></p>
                 </div>

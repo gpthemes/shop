@@ -21,5 +21,6 @@
 	<!-- End Footer Menu -->
 </div>
 </div>
+<?php wp_footer(); ?>
 </body>
 </html>

@@ -6,13 +6,15 @@
 get_header();
  ?>
 	        
-    <!-- Start Before Content -->
-    <?php get_template_part( 'template-parts/home', 'before-content' ); ?>
-    <!-- End Before Content -->
+    
             
     <!-- Start Extreme Slider -->
     <?php get_template_part( 'template-parts/home', 'slider' ); ?>
 	<!-- Start Extreme Slider -->
+   
+    <!-- Start Before Content -->
+    <?php get_template_part( 'template-parts/home', 'before-content' ); ?>
+    <!-- End Before Content -->
             
         <div class="row margin-vert-30">
             <!-- Main Text -->
