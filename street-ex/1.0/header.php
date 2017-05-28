@@ -8,7 +8,7 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="description" content="
 		<?php 
-        if( is_single() ){ 
+        if( is_singular() ){ 
             single_post_title('', true); 
         }else { 
             bloginfo('name'); echo "-"; bloginfo('description'); 

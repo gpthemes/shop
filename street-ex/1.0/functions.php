@@ -36,14 +36,43 @@ if ( ! function_exists( 'gp_themes_setup' ) ) :
 		 */
 		add_theme_support( 'automatic-feed-links' );
 		
+		 /*
+		 * Let WordPress manage the document title.
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded  tag in the document head, and expect WordPress to
+		 * provide it for us.
+		 */
+		add_theme_support( 'title-tag' );
+		
 		/**
 		 *	1.2 - Enable support for post thumbnails and featured images.
 		 */
 		add_theme_support( 'post-thumbnails' );
 		
+		// Add default posts and comments RSS feed links to head
+		add_theme_support( 'automatic-feed-links' );
+		
+		/*
+		 * Switch default core markup for search form, comment form, and comments
+		 * to output valid HTML5.
+		 */
+		add_theme_support( 'html5', array(
+			'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+		) );
+	 
+		/*
+		 * Enable support for Post Formats.
+		 *
+		 * See: https://codex.wordpress.org/Post_Formats
+		 */
+		add_theme_support( 'post-formats', array(
+			'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'
+		) );
+		
 		/**
 		 *	1.3 - Add support for two custom navigation menus.
 		 */
+		 
 		register_nav_menus( array(
 			'primary' 		=> 	'Primary Menu',
 			'secondary' 	=> 	'Secondary Menu',
@@ -126,10 +155,76 @@ if ( ! function_exists( 'gp_themes_setup' ) ) :
 			) );
 		}
 		add_action( 'widgets_init', 'gp_themes_sidebars' );
-			
+		
+							
 	}// End gp_themes_setup Funtion
 endif;	
 add_action( 'after_setup_theme', 'gp_themes_setup' );
+
+// setup navigation automatically
+add_action('load-nav-menus.php', 'auto_nav_creation_primary');
+function auto_nav_creation_primary(){
+	$name = 'Navigation';
+	$menu_exists = wp_get_nav_menu_object($name);
+	if( !$menu_exists){
+		$menu_id = wp_create_nav_menu($name);
+		$menu = get_term_by( 'name', $name, 'nav_menu' );
+
+
+		wp_update_nav_menu_item($menu->term_id, 0, array(
+			'menu-item-title' =>  __('Topics'),
+			'menu-item-classes' => 'topics-dropdown',
+			'menu-item-url' => '#',
+			'menu-item-type' => 'custom',
+			'menu-item-status' => 'publish'));
+
+		$cat_args=array(
+	        'exclude' => '1,10',
+	        'hide_empty' => 0
+        );
+        $the_cats = get_categories($cat_args);
+        if (count($the_cats) > 0){
+            foreach($the_cats as $category){
+				wp_update_nav_menu_item($menu->term_id, 0, array(
+				    'menu-item-title' => $category->name,
+				    'menu-item-object-id' => $category->term_id,
+				    'menu-item-db-id' => 0,
+				    'menu-item-object' => 'category',
+				    'menu-item-parent-id' => 5,
+				    'menu-item-depth' => 1,
+				    'menu-item-type' => 'taxonomy',
+				    'menu-item-url' => get_category_link($category->term_id),
+				    'menu-item-status' => 'publish',)
+				);
+			}
+        }
+		$event_cat_args=array(
+	        'include' => '10',
+	        'hide_empty' => 0
+        );
+        $eventCat = get_categories($event_cat_args);
+        if (count($eventCat) > 0){
+            foreach($eventCat as $eventCat){
+				wp_update_nav_menu_item($menu->term_id, 0, array(
+				    'menu-item-title' => $eventCat->name,
+				    'menu-item-object-id' => $eventCat->term_id,
+				    'menu-item-db-id' => 0,
+				    'menu-item-object' => 'category',
+				    'menu-item-type' => 'taxonomy',
+				    'menu-item-url' => get_category_link($eventCat->term_id),
+				    'menu-item-status' => 'publish',)
+				);
+			}
+        }
+	}
+	//then you set the wanted theme  location
+	$locations = get_theme_mod('nav_menu_locations');
+	$locations['primary'] = $menu->term_id;
+	set_theme_mod( 'nav_menu_locations', $locations );
+}
+//end
+
+
 
 /**
  *	2.0 - Add support for custom logo.
@@ -181,11 +276,11 @@ function gp_themes_enqueue_scripts() {
 	
 	wp_enqueue_style( 'gp-themes-animate', $_gp_path.'/css/animate.css', array(), date('Ymhi'));
 	
-	wp_enqueue_style( 'gp-themes-nexus', $_gp_path.'/css/nexus.css', array(), date('Ymhi'));
-	
 	wp_enqueue_style( 'gp-themes-font-awesome', $_gp_path.'/css/font-awesome.css', array(), date('Ymhi'));
 	
 	wp_enqueue_style( 'gp-themes-responsive', $_gp_path.'/css/responsive.css', array(), date('Ymhi'));
+	
+	wp_enqueue_style( 'gp-themes-nexus', $_gp_path.'/css/nexus.css', array(), date('Ymhi'));
 	
 	wp_enqueue_style( 'gp-themes-custom', $_gp_path.'/css/custom.css', array(), date('Ymhi'));
 	

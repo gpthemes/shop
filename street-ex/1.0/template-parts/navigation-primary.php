@@ -1,4 +1,4 @@
-<div class="col-md-12 margin-top-30">
+<div class="col-md-9">
     <div id="hornav" class="pull-right visible-lg">
     <?php 
     
